@@ -28,12 +28,12 @@ public class ReportController {
 	public String getAllReports(Model model){
 		model.addAttribute("reports", reportService.getAll());
 		model.addAttribute("hello", "Report Database");
-		return "/reports/list";
+		return "/reports/reportsList";
 	}
 	
 	@GetMapping("/create")
 	public String showCreateForm(Report report) {
-		return "/reports/add";
+		return "/reports/addReport";
 	}
 	
 	@PostMapping("/save")
