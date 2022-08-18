@@ -34,12 +34,15 @@ public class Spotter {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Report> reports = new ArrayList<Report>();
+	
+	int reportsCount = reports.size();
 
 	public Spotter(int id, int rating, String name) {
 		super();
 		this.id = id;
 		this.rating = rating;
 		this.name = name;
+		
 	}
 
 	public Spotter(int rating, String name) {

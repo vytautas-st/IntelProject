@@ -35,6 +35,7 @@ public class ReportController {
 	public String showCreateForm(Report report) {
 		return "/reports/add";
 	}
+	
 	@PostMapping("/save")
 	public String saveDish(Report report) {
 		reportService.save(report);
