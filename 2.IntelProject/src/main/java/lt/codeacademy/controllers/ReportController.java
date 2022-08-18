@@ -31,10 +31,14 @@ public class ReportController {
 		return "/reports/list";
 	}
 	
+	@GetMapping("/create")
+	public String showCreateForm(Report report) {
+		return "/reports/add";
+	}
 	@PostMapping("/save")
 	public String saveDish(Report report) {
 		reportService.save(report);
-		return "redirect:/reports/create";
+		return "redirect:/reports/all";
 	}
 	
 }
