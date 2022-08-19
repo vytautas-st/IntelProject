@@ -17,7 +17,7 @@
      </head>
          <body>
          <div class="container-fluid p-2 jumbotron text-center"  >
-            <h2 th:text="${hello}">Spotters</h2>
+            <h2 >Spotter's Database</h2>
          </div>
          
             <div  class="container-fluid" th:switch="${spotters}">
@@ -39,8 +39,8 @@
                             <td th:text="${spotter.name}">du </td>
                             <td th:text="${spotter.rating}">trys</td>
                             <td th:text="${spotter.reportsCount}"> keturi</td>
-                            <td><a class="btn btn-secondary" th:href="@{/edit/{id}(id=${spotter.id})}">Edit</a></td>
-                        <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${spotter.id})}">Delete</a></td>
+                            <td><a class="btn btn-secondary" th:href="@{spotters/edit/{id}(id=${spotter.id})}">Edit</a></td>
+                        <td><a class="btn btn-danger" th:href="@{spotters/delete/{id}(id=${spotter.id})}">Delete</a></td>
                         
                        </tr>
                      </tbody>

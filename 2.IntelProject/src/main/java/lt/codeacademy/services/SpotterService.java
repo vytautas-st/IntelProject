@@ -1,6 +1,7 @@
 package lt.codeacademy.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,12 @@ public class SpotterService {
 	
 	public List<Spotter> getAll() {
 		return spotterRepository.findAll();
+	}
+	public Optional<Spotter> getById(int id) {
+		return spotterRepository.findById(id);
+	}
+	
+	public void deleteSpotter(Spotter spotter) {
+		spotterRepository.delete(spotter);
 	}
 }
