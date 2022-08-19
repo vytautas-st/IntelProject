@@ -1,12 +1,14 @@
 package lt.codeacademy.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import lt.codeacademy.entities.Report;
+
 import lt.codeacademy.repositories.ReportRepository;
 
 @Service
@@ -20,5 +22,12 @@ public class ReportService {
 	
 	public List<Report> getAll() {
 		return reportRepository.findAll();
+	}
+	public Optional<Report> getById(int id) {
+		return reportRepository.findById(id);
+	}
+	
+	public void deleteReport(Report report) {
+		reportRepository.delete(report);
 	}
 }

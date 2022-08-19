@@ -17,7 +17,7 @@
      </head>
          <body>
          <div class="container-fluid p-2 jumbotron text-center" style="display: flex; width:100%" >
-            <h2 th:text="${hello}">Reports</h2>
+            <h2 >Reports</h2>
          </div>
          <div class="container-fluid" style="display: flex; height: 100px;">
             <div  style="width:38%;" th:switch="${reports}">
@@ -43,8 +43,8 @@
                             <td th:text="${report.description}">empty</td>
                            <td th:text="${report.lat}">empty</td>
                            <td th:text="${report.lng}">empty</td>
-                           <td><a class="btn btn-secondary" th:href="@{/edit/{id}(id=${report.id})}">Edit</a></td>
-                           <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${report.id})}">Delete</a></td>
+                           <td><a class="btn btn-secondary" th:href="@{/reports/edit/{id}(id=${report.id})}">Edit</a></td>
+                           <td><a class="btn btn-danger" th:href="@{/reports/delete/{id}(id=${report.id})}">Delete</a></td>
                        </tr>
                      </tbody>
                      </table>
