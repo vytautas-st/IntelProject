@@ -24,10 +24,10 @@ public class ReportController {
 		return new Report(0, "Dummy report", 54 , 25);
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("")
 	public String getAllReports(Model model){
 		model.addAttribute("reports", reportService.getAll());
-		model.addAttribute("hello", "Report Database");
+		model.addAttribute("hello", "Report Database Controls");
 		return "/reports/reportsList";
 	}
 	

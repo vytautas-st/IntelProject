@@ -17,7 +17,7 @@ public class SpotterController {
 	@Autowired
 	SpotterService spotterService;
 	
-	@GetMapping("/all")
+	@GetMapping("")
 	public String getAllReports(Model model){
 		model.addAttribute("spotters", spotterService.getAll());
 		model.addAttribute("hello", "Spotter Database");

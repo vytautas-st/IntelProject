@@ -30,27 +30,26 @@
                             <th>Spotter's Name</th>
                             <th>Spotting rating</th>
                             <th>Number of  reports</th>
-                             <!--    <th>Edit</th>
-                           <th>Delete</th>
-                           -->
+
                         </tr>
                     </thead>
                    <tbody>
                        <tr th:each="spotter	 : ${spotters}">
-                            <td th:text="${spotter.id}"></td>
-                            <td th:text="${spotter.name}"></td>
-                            <td th:text="${spotter.rating}"></td>
-                            <td th:text="${spotter.reportsCount}"></td>
-                         <!--   <td><a class="btn btn-light" th:href="@{/admin/edit/{id}(id=${student.id})}">Edit</a></td>
-                        <td><a class="btn btn-warning" th:href="@{/admin/delete/{id}(id=${student.id})}">Delete</a></td>
-                        -->
+                            <td th:text="${spotter.id}">vienas</td>
+                            <td th:text="${spotter.name}">du </td>
+                            <td th:text="${spotter.rating}">trys</td>
+                            <td th:text="${spotter.reportsCount}"> keturi</td>
+                            <td><a class="btn btn-secondary" th:href="@{/edit/{id}(id=${spotter.id})}">Edit</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${spotter.id})}">Delete</a></td>
+                        
                        </tr>
                      </tbody>
                      </table>
                 </div>
                     <p>
-                        <a class="btn btn-primary" href="/spotters/all">Show all spotters</a>
-                        <a class="btn btn-primary" href="/spotters/create">Add a new spotter</a>
+                        <a class="btn btn-success" href="/reports">Show all reports</a>
+                        <a class="btn btn-dark" href="/spotters/create">Add a new spotter</a>
+                        <a class="btn btn-success" href="/">Back to main</a>
                     </p>
                 </div>
                     
