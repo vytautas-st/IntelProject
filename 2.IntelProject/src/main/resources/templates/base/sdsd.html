@@ -17,13 +17,14 @@
      </head>
          <body>
          <div class="container-fluid p-2 jumbotron text-center" style="display: flow; width:100%" >
-            <h2 >Reports</h2>
-             <div  style="display: flex; width:100%" >
+            <h2  >Reports</h2>
+            <div s style="display: flex; width:100%" >
                 <a class="btn btn-primary" href="/spotters">LogIn</a>
             </div>
+            
          </div>
          <div class="container-fluid" style="display: flex; height: 100px;">
-            <div  style="width:38%;" th:switch="${reports}">
+            <div  style="width:30%;" th:switch="${reports}">
             <h4 th:case="null">No reports yet!</h4>
                <div th:case="*">
                    <table class="table table-hover">
@@ -34,9 +35,7 @@
                             <th>Description</th>
                             <th>Lattitude</th>
                             <th>Longitude</th>
-                             <!--    <th>Edit</th>
-                           <th>Delete</th>
-                           -->
+
                         </tr>
                     </thead>
                    <tbody>
@@ -45,34 +44,32 @@
                             <td th:text="${report.level}">empty</td>
                             <td th:text="${report.description}">empty</td>
                            <td th:text="${report.lat}">empty</td>
-                           <td th:text="${report.lng}">empty</td></tr>
+                           <td th:text="${report.lng}">empty</td>
+                       </tr>
                      </tbody>
                      </table>
 
              </div>   
             </div>
             <div  style="width:2%;"></div>
-            <div id="googleMap" class="container-fluid mt-1" style="width:60%;flex-grow: 1;height: 630px;border:3px solid #3a2b58"></div>
+            <div id="googleMap" class="container-fluid mt-1" style="width:68%;flex-grow: 1;height: 630px;border:3px solid #3a2b58"></div>
               
         </div>
-        <script th:inline="javascript">	
-        	/*<![CDATA[*/
-        	var reports = [[${reports}]];	
-			
-            function myMap() {
-            	var mapProp= {center:new google.maps.LatLng(55.2053185,23.9693398),zoom:7,};         
-				var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-				for(var i=0;i<reports.length;i++)
-	        	{
-					var reportCoord = {lat: reports[i].lat, lng: reports[i].lng};
-					var marker = new google.maps.Marker({position: reportCoord, map: map, label: reports[i].description});
-	        	}
+        <script >	
+        /*<![CDATA[*/
+    	var reportsz = [[${reports}]];
+    	/*]]>*/
+            function myMap2() {
+            var mapProp= {center:new google.maps.LatLng(54.7028992,25.4148608),zoom:10,};
+            const mark = { lat: 54.7028, lng: 25.4148 };
 
+            const labels = "Taikinys";
+            let labelIndex = 5;
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+             //var marker = new google.maps.Marker({position: mark, map: map, title: "Ciupk ji",});
+            var marker2 = new google.maps.Marker({position: {lat: 54.6028, lng: 25.3148}, map: map,label: labels,});
             }
-        	/*]]>*/
-
-           
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDABAwC6MT_fLJhaTFmVIluNKPp5bc-vms&callback=myMap"></script>
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDABAwC6MT_fLJhaTFmVIluNKPp5bc-vms&callback=myMap2"></script>
  </body>
 </html>

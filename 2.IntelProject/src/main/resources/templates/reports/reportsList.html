@@ -60,19 +60,24 @@
             <div id="googleMap" class="container-fluid mt-1" style="width:60%;flex-grow: 1;height: 630px;border:3px solid #3a2b58"></div>
               
         </div>
-        <script >	
+        <script th:inline="javascript">	
+        	/*<![CDATA[*/
+        	var reports = [[${reports}]];	
+			
             function myMap() {
-            var mapProp= {center:new google.maps.LatLng(54.7028992,25.4148608),zoom:10,};
-            const mark = { lat: 54.7028, lng: 25.4148 };
-			//const coorlog = "${report.lat}";
-			//const coorlng = "${report.lng}";
-            const labels = "Taikinys";
-            let labelIndex = 5;
-            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-             var marker = new google.maps.Marker({position: mark, map: map, title: "Ciupk ji",});
-            var marker2 = new google.maps.Marker({position: {lat: 54.6028, lng: 25.3148}, map: map,label: labels,});
+            	var mapProp= {center:new google.maps.LatLng(55.2053185,23.9693398),zoom:7,};         
+				var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+				for(var i=0;i<reports.length;i++)
+	        	{
+					var reportCoord = {lat: reports[i].lat, lng: reports[i].lng};
+					var marker = new google.maps.Marker({position: reportCoord, map: map, label: reports[i].description});
+	        	}
+
             }
+        	/*]]>*/
+
+           
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=&callback=myMap"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDABAwC6MT_fLJhaTFmVIluNKPp5bc-vms&callback=myMap"></script>
  </body>
 </html>
