@@ -17,9 +17,20 @@
      </head>
          <body>
          <div class="container-fluid p-2 jumbotron text-center" style="display: flow; width:100%" >
-            <h2 >Reports</h2>
+            <h2 th:text="#{lang.rep}"></h2>
              <div  style="display: flex; width:100%" >
-                <a class="btn btn-primary" href="/spotters">LogIn</a>
+                <a class="btn btn-primary" href="/reports" th:text="#{lang.login}"></a>
+                <div  style="width:75%;"></div>
+                <span th:text="#{lang.change}"></span>:
+                <div  style="width:2%;"></div>
+                <select id="locales">
+                    <option value="">Select</option>
+                    <option value="en" th:text="#{lang.eng}"></option>
+                    <option value="fr" th:text="#{lang.fr}"></option>
+                    <option value="lt" th:text="#{lang.lt}"></option>
+                    </select>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+                </script>
             </div>
          </div>
          <div class="container-fluid" style="display: flex; height: 100px;">
@@ -29,11 +40,11 @@
                    <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Report ID</th>
-                            <th>Level</th>
-                            <th>Description</th>
-                            <th>Lattitude</th>
-                            <th>Longitude</th>
+                            <th th:text="#{lang.repid}" >Report ID</th>
+                            <th th:text="#{lang.level}">Level</th>
+                            <th th:text="#{lang.desc}">Description</th>
+                            <th th:text="#{lang.lat}">Lattitude</th>
+                            <th th:text="#{lang.lng}">Longitude</th>
                              <!--    <th>Edit</th>
                            <th>Delete</th>
                            -->
@@ -74,5 +85,15 @@
            
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDABAwC6MT_fLJhaTFmVIluNKPp5bc-vms&callback=myMap"></script>
+        <script type="text/javascript">
+			$(document).ready(function() {
+   			 $("#locales").change(function () {
+       		 var selectedOption = $('#locales').val();
+        	if (selectedOption != ''){
+          		  window.location.replace('?lang=' + selectedOption);
+        	}
+    				});
+			});
+		</script>
  </body>
 </html>
