@@ -17,12 +17,12 @@
 </head>
 <body>
     <div class="container  mt-3 text-center">
-        <h2>Spotter data input</h2>
+       
     </div>
     <div class="container mt-2 ">
        <form class="form-control jumbotron " action="#" th:action="@{/spotters/save}"
             th:object="${spotter}" method="post">
-            <h4>Fill all data fields</h4>
+            <h2>Spotter data input</h2>
             <div class="mb-3 mt-3 w-auto">
                 <label class="form-check-label w-25" for="name">Spotter's name</label>
                 <input  type="text" th:field="*{name}" id="name"

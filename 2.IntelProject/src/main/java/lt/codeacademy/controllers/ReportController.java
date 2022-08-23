@@ -30,7 +30,7 @@ public class ReportController {
 	@GetMapping("")
 	public String getAllReports(Model model){
 		model.addAttribute("reports", reportService.getAll());
-		
+		//model.addAttribute("spotter", "Antanas");
 		return "/reports/reportsList";
 	}
 	
