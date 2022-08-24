@@ -17,7 +17,21 @@
      </head>
          <body>
          <div class="container-fluid p-2 jumbotron text-center"  >
-            <h2 >Spotter's Database</h2>
+            <h2 th:text="#{lang.spotTitle}" >Spotter's Database</h2>
+              <div  style="display: flex; width:100%" >
+            
+                <div  style="width:80%;"></div>
+                <span th:text="#{lang.change}"></span>:
+                <div  style="width:2%;"></div>
+                <select id="locales">
+                    <option value="">Select</option>
+                    <option value="en" th:text="#{lang.eng}"></option>
+                    <option value="fr" th:text="#{lang.fr}"></option>
+                    <option value="lt" th:text="#{lang.lt}"></option>
+                    </select>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+                </script>
+            </div>
          </div>
          
             <div  class="container-fluid" th:switch="${spotters}">
@@ -26,32 +40,42 @@
                    <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Spotter's ID</th>
-                            <th>Spotter's Name</th>
-                            <th>Spotting rating</th>
-                            <th>Number of  reports</th>
+                            <th th:text="#{lang.spotid}">Spotter's ID</th>
+                            <th th:text="#{lang.spotname}">Spotter's Name</th>
+                            <th th:text="#{lang.spotrate}">Spotting rating</th>
+                            <th th:text="#{lang.repcount}">Number of  reports</th>
 
                         </tr>
                     </thead>
                    <tbody>
                        <tr th:each="spotter	 : ${spotters}">
-                            <td th:text="${spotter.id}">vienas</td>
-                            <td th:text="${spotter.name}">du </td>
-                            <td th:text="${spotter.rating}">trys</td>
-                            <td th:text="${spotter.reportsCount}"> keturi</td>
-                            <td><a class="btn btn-secondary" th:href="@{spotters/edit/{id}(id=${spotter.id})}">Edit</a></td>
-                        <td><a class="btn btn-danger" th:href="@{spotters/delete/{id}(id=${spotter.id})}">Delete</a></td>
+                            <td th:text="${spotter.id}">Test Id</td>
+                            <td th:text="${spotter.name}">Test name </td>
+                            <td th:text="${spotter.rating}">Test Rating</td>
+                            <td th:text="${spotter.reportsCount}"> Test number</td>
+                            <td><a class="btn btn-secondary" th:href="@{spotters/edit/{id}(id=${spotter.id})}" th:text="#{lang.edit}">Edit</a></td>
+                        <td><a class="btn btn-danger" th:href="@{spotters/delete/{id}(id=${spotter.id})}" th:text="#{lang.del}">Delete</a></td>
                         
                        </tr>
                      </tbody>
                      </table>
                 </div>
                     <p>
-                        <a class="btn btn-success" href="/reports">Show all reports</a>
-                        <a class="btn btn-dark" href="/spotters/create">Add a new spotter</a>
-                        <a class="btn btn-success" href="/">Back to main</a>
+                        <a class="btn btn-success" href="/reports" th:text="#{lang.showRep}">Show all reports</a>
+                        <a class="btn btn-dark" href="/spotters/create" th:text="#{lang.addSpot}">Add a new spotter</a>
+                        <a class="btn btn-success" href="/" th:text="#{lang.toMain}">Back to main</a>
                     </p>
                 </div>
+         	<script type="text/javascript">
+				$(document).ready(function() {
+   			 		$("#locales").change(function () {
+       		 			var selectedOption = $('#locales').val();
+        				if (selectedOption != ''){
+          		 	 		window.location.replace('?lang=' + selectedOption);
+        				}
+    				});
+				});
+			</script>
                     
  </body>
 </html>

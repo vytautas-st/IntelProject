@@ -17,7 +17,7 @@
      </head>
          <body>
          <div class="container-fluid p-2 jumbotron text-center" style="display: flow; width:100%" >
-            <h2 th:text="#{lang.rep}" ></h2>
+            <h2 th:text="#{lang.rep}" >Reports</h2>
              <div  style="display: flex; width:100%" >
             
                 <div  style="width:80%;"></div>
@@ -86,21 +86,18 @@
 					var reportCoord = {lat: reports[i].lat, lng: reports[i].lng};
 					var marker = new google.maps.Marker({position: reportCoord, map: map, label: reports[i].description});
 	        	}
-
             }
-        	/*]]>*/
-
-           
+        	/*]]>*/   
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDABAwC6MT_fLJhaTFmVIluNKPp5bc-vms&callback=myMap"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-   			 $("#locales").change(function () {
-       		 var selectedOption = $('#locales').val();
-        	if (selectedOption != ''){
-          		  window.location.replace('?lang=' + selectedOption);
-        	}
-    				});
+   			 	$("#locales").change(function () {
+       		 		var selectedOption = $('#locales').val();
+        			if (selectedOption != ''){
+          		  		window.location.replace('?lang=' + selectedOption);
+        			}
+    			});
 			});
 		</script>
 </body>
