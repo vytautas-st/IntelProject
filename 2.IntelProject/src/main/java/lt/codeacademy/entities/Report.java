@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -22,7 +23,9 @@ public class Report {
 	int id;
 	int level;
 	String description;
-	//Spotter spotter;
+	
+	@OneToOne
+	Spotter spotter;
 	double  lat;
 	double  lng;
 	
@@ -44,6 +47,14 @@ public class Report {
 		this.lat = lat;
 		this.lng = lng;
 	}
+	
+	public Report(String description) {
+
+		this.description = description;
+		//this.spotter = spotter;
+
+	}
+
 
 	@Override
 	public String toString() {
