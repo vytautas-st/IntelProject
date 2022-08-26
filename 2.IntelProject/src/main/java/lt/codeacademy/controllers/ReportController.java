@@ -1,5 +1,7 @@
 package lt.codeacademy.controllers;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,34 +30,39 @@ public class ReportController {
 	}
 	
 	@GetMapping("")
-	public String getAllReports(Model model){
+	public String getAllReports(Principal principal,Model model){
 		model.addAttribute("reports", reportService.getAll());
-		//model.addAttribute("spotter", "Antanas");
+		model.addAttribute("loggedIn", principal.getName());
 		return "/reports/reportsList";
 	}
 	
 	@GetMapping("/create")
-	public String showCreateForm(Report report) {
+	public String showCreateForm(Report report,Principal principal,Model model) {
+		model.addAttribute("loggedIn", principal.getName());
 		return "/reports/addReport";
 	}
 	
 	@PostMapping("/save")
-	public String saveDish(Report report) {
+	public String saveDish(Report report,Principal principal,Model model) {
 		reportService.save(report);
+		model.addAttribute("loggedIn", principal.getName());
 		return "redirect:/reports";
 	}
 	 @GetMapping("/edit/{id}")
-	    public String showUpdateReport(@PathVariable("id") int id, Model model) {
+	    public String showUpdateReport(@PathVariable("id") int id, Model model, Principal principal) {
 		 	Report report = reportService.getById(id)
 	          .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 	        model.addAttribute("report", report);
+	        model.addAttribute("loggedIn", principal.getName());
 	        return "/reports/updateReport";
 	    }
 	 @PostMapping("/update/{id}")
 	    public String updateUser(@PathVariable("id") int id,  Report report, 
-	      BindingResult result, Model model) {
+	      BindingResult result, Model model, Principal principal) {
+		 	model.addAttribute("loggedIn", principal.getName());
 	        if (result.hasErrors()) {
 	            report.setId(id);
+	            
 	            return "/reports/updateReport";
 	        }           
 	        reportService.save(report); 
@@ -65,11 +72,12 @@ public class ReportController {
 	    }
 	 
 	 @GetMapping("/delete/{id}")
-	    public String deleteAuthor(@PathVariable("id") int id, Model model) {
+	    public String deleteAuthor(@PathVariable("id") int id, Model model, Principal principal) {
 		 Report report = reportService.getById(id)
 	          .orElseThrow(() -> new IllegalArgumentException("Invalid author Id:" + id));
 	        reportService.deleteReport(report);
 	        model.addAttribute("reports", reportService.getAll());
+	        model.addAttribute("loggedIn", principal.getName());
 	        return "/reports/reportsList";
 	    }
 	

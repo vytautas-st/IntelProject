@@ -13,27 +13,31 @@
       background-color: #3a2b58; 
       color: #e5e4f4;
     }
-     </style>
+    #header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 0;
+
+}
+	#googleMap{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 0;
+
+}
+#content {
+  margin-top: 110px;
+  z-index:1;
+}
+     </style>			
      </head>
          <body>
-         <div class="container-fluid p-2 jumbotron text-center" style="display: flow; width:100%" >
-            <h2 th:text="#{lang.rep}" >Reports</h2>
-             <div  style="display: flex; width:100%" >
-            
-                <div  style="width:80%;"></div>
-                <span th:text="#{lang.change}"></span>:
-                <div  style="width:2%;"></div>
-                <select id="locales">
-                    <option value="">Select</option>
-                    <option value="en" th:text="#{lang.eng}"></option>
-                    <option value="fr" th:text="#{lang.fr}"></option>
-                    <option value="lt" th:text="#{lang.lt}"></option>
-                    </select>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-                </script>
-            </div>
+         <div id="header"  >
+          <th:block th:include="/_header"></th:block>
          </div>
-         <div class="container-fluid" style="display: flex; height: 100px;">
+         <div id="content" class="container-fluid" style="display: flex; height: 100px;">
             <div  style="width:38%;" th:switch="${reports}">
             <h4 th:case="null">No reports yet!</h4>
                <div th:case="*">
@@ -74,6 +78,7 @@
             <div id="googleMap" class="container-fluid mt-1" style="width:60%;flex-grow: 1;height: 630px;border:3px solid #3a2b58"></div>
               
         </div>
+        
         <script th:inline="javascript">	
         	/*<![CDATA[*/
         	var reports = [[${reports}]];	
@@ -100,5 +105,7 @@
     			});
 			});
 		</script>
+		
 </body>
+
 </html>

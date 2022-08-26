@@ -16,26 +16,14 @@
      </style>
      </head>
          <body>
-         <div class="container-fluid p-2 jumbotron text-center"  >
-            <h2 th:text="#{lang.spotTitle}" >Spotter's Database</h2>
-              <div  style="display: flex; width:100%" >
-            	<form th:action="@{/logout}" method="post">
-            		<input type="submit" value="Sign Out"/>
-        		</form>
-                <div  style="width:70%;" th:text="${loggedIn}"  ></div>
-                <span th:text="#{lang.change}"></span>:
-                <div  style="width:2%;"></div>
-                <select id="locales">
-                    <option value="">Select</option>
-                    <option value="en" th:text="#{lang.eng}"></option>
-                    <option value="fr" th:text="#{lang.fr}"></option>
-                    <option value="lt" th:text="#{lang.lt}"></option>
-                    </select>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-                </script>
-            </div>
-         </div>
-         
+         	 <th:block th:include="/_header"></th:block>
+         		<div style="display: flex; width:100%" class="mb-3 mt-3 auto">
+         			<div  style="width:2%;"></div>
+         			<div  >
+         			<h2 th:text="#{lang.spotTitle}" >Spotter's Database</h2>
+         			</div>
+         		</div>
+         	        
             <div  class="container-fluid" th:switch="${spotters}">
             <h4 th:case="null">No registered spotters</h4>
                <div th:case="*">

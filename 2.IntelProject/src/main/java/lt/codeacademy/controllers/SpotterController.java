@@ -32,31 +32,34 @@ public class SpotterController {
 		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("loggedIn", principal.getName());
 		model.addAttribute("spotters", spotterService.getAll());
-		//model.addAttribute("hello", "Spotter Database");
 		return "/spotters/spottersList";
 	}
 	
 	@GetMapping("/create")
-	public String showCreateForm(Spotter spotter) {
+	public String showCreateForm(Principal principal,Spotter spotter,Model model) {
+		model.addAttribute("loggedIn", principal.getName());
 		return "/spotters/addSpotter";
 	}
 	
 	@PostMapping("/save")
-	public String saveDish(Spotter  spotter,Model model) {
+	public String saveDish(Principal principal, Spotter  spotter,Model model) {
 		spotterService.save(spotter );
+		model.addAttribute("loggedIn", principal.getName());
 		model.addAttribute("spotters", spotterService.getAll());
 		return "redirect:/spotters";
 	}
 	 @GetMapping("/edit/{id}")
-	    public String showUpdateSpotter(@PathVariable("id") int id, Model model) {
+	    public String showUpdateSpotter(@PathVariable("id") int id, Principal principal, Model model) {
 		 	Spotter spotter = spotterService.getById(id)
 	          .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 	        model.addAttribute("spotter", spotter);
+	        model.addAttribute("loggedIn", principal.getName());
 	        return "/spotters/updateSpotter";
 	    }
 	 @PostMapping("/update/{id}")
 	    public String updateUser(@PathVariable("id") int id,  Spotter spotter, 
-	      BindingResult result, Model model) {
+	      BindingResult result,Principal principal, Model model) {
+		 	model.addAttribute("loggedIn", principal.getName());
 	        if (result.hasErrors()) {
 	            spotter.setId(id);
 	            return "/spotters/updateSpotter";
@@ -67,16 +70,17 @@ public class SpotterController {
 	        }
 	        spotterService.save(spotter); 
 	        model.addAttribute("spotters", spotterService.getAll());
-	       // model.addAttribute("hello", "Spotter Database");
+	        
 	        return "redirect:/spotters";
 	    }
 	 
 	 @GetMapping("/delete/{id}")
-	    public String deleteAuthor(@PathVariable("id") int id, Model model) {
+	    public String deleteAuthor(@PathVariable("id") int id,Principal principal, Model model) {
 		 Spotter spotter = spotterService.getById(id)
 	          .orElseThrow(() -> new IllegalArgumentException("Invalid author Id:" + id));
 	        spotterService.deleteSpotter(spotter);
 	        model.addAttribute("spotters", spotterService.getAll());
+	        model.addAttribute("loggedIn", principal.getName());
 	        return "/spotters/spottersList";
 	    }
 
