@@ -19,8 +19,10 @@
          <div class="container-fluid p-2 jumbotron text-center"  >
             <h2 th:text="#{lang.spotTitle}" >Spotter's Database</h2>
               <div  style="display: flex; width:100%" >
-            
-                <div  style="width:80%;"></div>
+            	<form th:action="@{/logout}" method="post">
+            		<input type="submit" value="Sign Out"/>
+        		</form>
+                <div  style="width:70%;" th:text="${loggedIn}"  ></div>
                 <span th:text="#{lang.change}"></span>:
                 <div  style="width:2%;"></div>
                 <select id="locales">
@@ -42,6 +44,7 @@
                         <tr>
                             <th th:text="#{lang.spotid}">Spotter's ID</th>
                             <th th:text="#{lang.spotname}">Spotter's Name</th>
+                            <th>Spotter's E-mail</th>
                             <th th:text="#{lang.spotrate}">Spotting rating</th>
                             <th th:text="#{lang.repcount}">Number of  reports</th>
 
@@ -51,6 +54,7 @@
                        <tr th:each="spotter	 : ${spotters}">
                             <td th:text="${spotter.id}">Test Id</td>
                             <td th:text="${spotter.name}">Test name </td>
+                            <td th:text="${spotter.email}">Test email </td>
                             <td th:text="${spotter.rating}">Test Rating</td>
                             <td th:text="${spotter.reportsCount}"> Test number</td>
                             <td><a class="btn btn-secondary" th:href="@{spotters/edit/{id}(id=${spotter.id})}" th:text="#{lang.edit}">Edit</a></td>

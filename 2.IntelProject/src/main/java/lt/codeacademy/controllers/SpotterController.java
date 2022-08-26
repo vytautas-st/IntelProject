@@ -1,6 +1,12 @@
 package lt.codeacademy.controllers;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import lt.codeacademy.WebSecurityConfig;
 import lt.codeacademy.entities.Spotter;
 
 import lt.codeacademy.services.SpotterService;
@@ -22,7 +28,9 @@ public class SpotterController {
 	SpotterService spotterService;
 	
 	@GetMapping("")
-	public String getAllReports(Model model){
+	public String getAllReports(Principal principal, Model model){
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("loggedIn", principal.getName());
 		model.addAttribute("spotters", spotterService.getAll());
 		//model.addAttribute("hello", "Spotter Database");
 		return "/spotters/spottersList";
@@ -34,8 +42,9 @@ public class SpotterController {
 	}
 	
 	@PostMapping("/save")
-	public String saveDish(Spotter  spotter) {
+	public String saveDish(Spotter  spotter,Model model) {
 		spotterService.save(spotter );
+		model.addAttribute("spotters", spotterService.getAll());
 		return "redirect:/spotters";
 	}
 	 @GetMapping("/edit/{id}")
@@ -51,11 +60,15 @@ public class SpotterController {
 	        if (result.hasErrors()) {
 	            spotter.setId(id);
 	            return "/spotters/updateSpotter";
-	        }           
+	        }
+	        if(spotter.getPassword().length() < 50) {
+	        	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
+		        spotter.setPassword(encoder.encode(spotter.getPassword()));
+	        }
 	        spotterService.save(spotter); 
 	        model.addAttribute("spotters", spotterService.getAll());
 	       // model.addAttribute("hello", "Spotter Database");
-	        return "/spotters/spottersList";
+	        return "redirect:/spotters";
 	    }
 	 
 	 @GetMapping("/delete/{id}")

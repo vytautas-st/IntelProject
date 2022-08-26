@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+
     <div class="container  mt-3 text-center">
         <div  style="display: flex; width:100%" >
             
@@ -40,16 +41,35 @@
         method="post">
         <!--  <h4>Check all data fields</h4> -->
         <h2 th:text="#{lang.spotedit}">Edit spotter data</h2>
-        <div class="mb-3 mt-3 w-auto">
-        
+        <div class="mb-3 mt-3 w-25">
             <label class="form-check-label" for="name" th:text="#{lang.spotname}">Spotter's name</label>
             <input  type="text" th:field="*{name}" id="name" placeholder="Name">
             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-        </div>    
-        <div class="mb-3 mt-3 w-auto">
+        </div>  
+        <div class="mb-3 mt-3 w-25">
+            <label class="form-check-label" for="email">Spotter's E-mail</label>
+            <input  type="text" th:field="*{email}" id="email" placeholder="Email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </div> 
+         <div class="mb-3 mt-3 w-25">
+            <label class="form-check-label" for="password">Spotter's Password</label>
+            <input  type="text" th:field="*{password}" id="password" placeholder="Password">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </div>   
+        <div  class="mb-3 mt-3 w-25">
           <label for="rating" th:text="#{lang.spotrate}">Spotter's rating</label>
           <input type="number" th:field="*{rating}" id="rating" placeholder="rating">
-          <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+          <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
+        </div>
+         <div hidden class="mb-3 mt-3 w-25">
+          <label for="reportsCount" >Spotter's reports Count</label>
+          <input type="number" th:field="*{reportsCount}" id="reportsCount" placeholder="reportsCount">
+          <span th:if="${#fields.hasErrors('reportsCount')}" th:errors="*{reportsCount}"></span>   
+        </div>
+        <div hidden class="mb-3 mt-3 w-25">
+          <label for="isAdmin" >Admin Status</label>
+          <input type="number" th:field="*{isAdmin}" id="isAdmin" placeholder="isAdmin">
+          <span th:if="${#fields.hasErrors('isAdmin')}" th:errors="*{isAdmin}"></span>
         </div>
         <!--  <input class="btn btn-primary" type="submit" value="Update Spotter">-->
          <button type="submit" class="btn btn-primary" th:text="#{lang.updSpot}" >Update Spotter</button>

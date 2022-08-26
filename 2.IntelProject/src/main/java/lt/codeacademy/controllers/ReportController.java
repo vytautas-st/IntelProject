@@ -61,7 +61,7 @@ public class ReportController {
 	        reportService.save(report); 
 	        model.addAttribute("reports", reportService.getAll());
 	      
-	        return "/reports/reportsList";
+	        return "redirect:/reports";
 	    }
 	 
 	 @GetMapping("/delete/{id}")

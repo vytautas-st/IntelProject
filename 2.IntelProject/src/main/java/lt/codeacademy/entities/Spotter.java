@@ -31,6 +31,11 @@ public class Spotter {
 	int id;
 	int rating;
 	String name;
+	String password;
+	String email;
+	int isAdmin ;
+	
+	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Report> reports = new ArrayList<Report>();
