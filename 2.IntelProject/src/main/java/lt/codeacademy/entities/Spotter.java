@@ -33,7 +33,8 @@ public class Spotter {
 	String name;
 	String password;
 	String email;
-	int isAdmin ;
+	String user_role;
+	private boolean active;
 	
 	
 	
@@ -65,5 +66,6 @@ public class Spotter {
 		reports.add(report);
 		
 	}
+	
 
 }

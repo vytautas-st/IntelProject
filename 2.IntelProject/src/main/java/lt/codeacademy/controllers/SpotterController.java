@@ -43,6 +43,7 @@ public class SpotterController {
 	
 	@PostMapping("/save")
 	public String saveDish(Principal principal, Spotter  spotter,Model model) {
+		spotter.setUser_role("ROLE_SPOTTER");
 		spotterService.save(spotter );
 		model.addAttribute("loggedIn", principal.getName());
 		model.addAttribute("spotters", spotterService.getAll());

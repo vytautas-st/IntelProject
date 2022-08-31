@@ -17,27 +17,25 @@
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 0;
-
+  z-index: 2;
 }
-	#googleMap{
-  position: fixed;
+.mapas {  
+position: fixed;
   width: 100%;
-  top: 0;
-  z-index: 0;
-
+  top: 2;
+  z-index: 1;
 }
 #content {
   margin-top: 110px;
   z-index:1;
-}
+
      </style>			
      </head>
          <body>
          <div id="header"  >
           <th:block th:include="/_header"></th:block>
          </div>
-         <div id="content" class="container-fluid" style="display: flex; height: 100px;">
+         <div  id="content" class="container-fluid" style="display: flex; height: 100px;">
             <div  style="width:38%;" th:switch="${reports}">
             <h4 th:case="null">No reports yet!</h4>
                <div th:case="*">
@@ -74,8 +72,9 @@
                       </p>
              </div>   
             </div>
+            
             <div  style="width:2%;"></div>
-            <div id="googleMap" class="container-fluid mt-1" style="width:60%;flex-grow: 1;height: 630px;border:3px solid #3a2b58"></div>
+            <div   id="googleMap" class="mapas"  style="width:60%;height:700px;border:3px solid #3a2b58"></div>
               
         </div>
         
